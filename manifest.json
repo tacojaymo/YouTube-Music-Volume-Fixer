@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "YouTube Music Volume Fixer",
+    "version": "1.0",
+    "description": "Changes the volume scaling of the YouTube Music volume slider.",
+    "icons": {
+        "48": "icons/ytmvf-48.png",
+        "96": "icons/ytmvf-96.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "32": "icons/ytmvf-32.png",
+            "16": "icons/ytmvf-16.png"
+        },
+        "default_title": "YouTube Music Volume Fixer",
+        "default_popup": "popup/ytmvf.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://music.youtube.com/*"
+            ],
+            "js": [
+                "yt-music-volume-fixer.js"
+            ]
+        }
+    ]
+}
