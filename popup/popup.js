@@ -1,11 +1,9 @@
-let maxVol = document.getElementById("volume");
+let userInput = document.getElementById("max-volume");
+let volume = userInput.value;
 
 // add input listener
-maxVol.addEventListener("input", function () {
-    let volume = maxVol.value;
-
-    // send a message to the Firefox background script with the new volume value
-    self.port.emit("updateVolume", volume);
+userInput.addEventListener("input", function () {
+    volume = userInput.value;
 
     console.log("Slider value changed to " + volume);
 });
