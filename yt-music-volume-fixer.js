@@ -6,7 +6,7 @@ if (storageAvailable("localStorage")) {
     if (!localStorage.getItem('maxVolumeLocal')) {
         maxVolume = 100;
         localStorage.setItem('maxVolumeLocal', 100);
-        console.info('setting maxVolumeLocal to ' + JSON.stringify(maxVolume));
+        console.warn('setting maxVolumeLocal to ' + JSON.stringify(maxVolume));
     } else {
         maxVolume = localStorage.getItem('maxVolumeLocal');
         console.info('getting maxVolumeLocal: ' + JSON.stringify(maxVolume));
@@ -14,6 +14,7 @@ if (storageAvailable("localStorage")) {
 } else {
     // no storage available, set max value to 30 instead
     maxVolume = 30;
+    console.error('not enough local storage!');
 }
 
 /* set the max on the volume slider based on the maxVolume value */
@@ -22,10 +23,13 @@ let volume = document.getElementById('volume-slider');
 
 volume.setAttribute('max', JSON.stringify(maxVolume));
 
+//localStorage.removeItem('maxVolumeLocal');
+
 /* create listener for when user changes max volume */
 window.addEventListener('storage', function (e) {
     maxVolume = e.newValue;
     volume.setAttribute('max', JSON.stringify(maxVolume));
+    console.info('maxVolumeLocal set to new value: ' + JSON.stringify(maxVolume));
 });
 
 /* function that detects whether localStorage is both supported and available 
