@@ -8,13 +8,16 @@
         "48": "icons/ytmvf-48.png",
         "96": "icons/ytmvf-96.png"
     },
+    "permissions": [
+        "storage"
+    ],
     "browser_action": {
         "default_icon": {
             "32": "icons/ytmvf-32.png",
             "16": "icons/ytmvf-16.png"
         },
         "default_title": "YouTube Music Volume Fixer",
-        "default_popup": "popup/ytmvf.html"
+        "default_popup": "popup/popup.html"
     },
     "content_scripts": [
         {
@@ -22,6 +25,7 @@
                 "*://music.youtube.com/*"
             ],
             "js": [
+                "storageAvailable.js",
                 "yt-music-volume-fixer.js"
             ]
         }

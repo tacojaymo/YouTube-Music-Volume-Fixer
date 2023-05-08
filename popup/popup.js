@@ -1,32 +1,26 @@
-//import storageAvailable from '../yt-music-volume-fixer'
-let userInput = document.getElementById("max-volume");
-let volume = userInput.value;
+let userInput = document.getElementById('max-volume');
+var ytmvf = {
+    maxVolume: userInput.value
+};
 
-// if (storageAvailable("localStorage")) {
-//     // get stored maxVolume from storage if it exists or default to 100
-//     if (!localStorage.getItem('maxVolumeLocal')) {
-//         volume = 100;
-//         localStorage.setItem('maxVolumeLocal', 100);
-//         console.warn('setting maxVolumeLocal to ' + JSON.stringify(volume));
-//     } else {
-//         volume = localStorage.getItem('maxVolumeLocal');
-//         console.info('getting maxVolumeLocal: ' + JSON.stringify(volume));
-//     }
-// } else {
-//     // no storage available, set max value to 30 instead
-//     volume = 30;
-//     console.error('not enough local storage!');
-// }
+console.info('Beginning YSMVF popup script...');
 
-console.info("Slider value set: " + JSON.stringify(volume));
+/* read stored value from storage and set the input to that value */
+if (browser.storage.local.get(ytmvf, function (storage) {
+    ytmvf.maxVolume = storage.maxVolume;
+    userInput.value = ytmvf.maxVolume;
+    console.info(PL_NAME + 'Slider value changed to: ' + ytmvf.maxVolume + ' initially in popup.');
+}));
+
+
 // add input listener
-userInput.addEventListener("input", () => {
-    volume = userInput.value;
-
-    if (volume <= 50) {
-        document.getElementById('has-storage').hidden = true;
-        document.getElementById('no-storage').hidden = false;
+userInput.addEventListener('change', () => {
+    if (userInput.value >= 0 && userInput.value <= 100) {
+        ytmvf.maxVolume = userInput.value;
+        browser.storage.local.set(ytmvf);
+        console.info(PL_NAME + 'Slider value changed to: ' + ytmvf.maxVolume + ' in popup.');
+    } else {
+        userInput.value = ytmvf.maxVolume;
+        console.error(PL_NAME + 'User entered value not within boundry!');
     }
-
-    console.info("Slider value changed to " + JSON.stringify(volume));
 });

@@ -35,10 +35,8 @@
         <label for="max-volume">Max Volume (0% - 100%): </label>
         <input type="number" id="max-volume" name="max-volume" min="0" max="100" value="100" step="5">
     </div>
-    <div id="no-storage" hidden z-index="-10">
-        <p>If you're seeing this, you don't <br>have enough local memory to <br>run this plugin!</p>
-    </div>
 
+    <script src="../storageAvailable.js"></script>
     <script src="popup.js"></script>
 </body>
 
