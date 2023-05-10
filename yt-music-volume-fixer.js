@@ -1,11 +1,16 @@
 var slider = {
     maxVolume: 100
 };
+
+// get volume slider container element
+let volumeSlider = document.getElementById('volume-slider');
 console.info(PL_NAME + 'Starting injector plugin and setting maxVolume to: ' + slider.maxVolume);
 
-/* initialize maxVolume from storage */
+/* set the max on the volume slider based on the stored maxVolume value */
 browser.storage.local.get(slider, function (storage) {
     slider.maxVolume = Number(storage.maxVolume);
+    console.info(PL_NAME + 'maxVolume value set to: ' + slider.maxVolume);
+    volumeSlider.setAttribute('max', Number(slider.maxVolume));
 });
 
 /* callback for when settings are updated */
@@ -14,13 +19,6 @@ function settingsUpdateCallback(storage) {
     volumeSlider.setAttribute('max', Number(slider.maxVolume));
     console.info(PL_NAME + 'Storage value changed in YTM! Set to: ' + slider.maxVolume);
 }
-
-/* set the max on the volume slider based on the maxVolume value */
-// get volume slider container element
-let volumeSlider = document.getElementById('volume-slider');
-
-volumeSlider.setAttribute('max', Number(slider.maxVolume));
-console.info(PL_NAME + 'Setting "max" slider value to: ' + slider.maxVolume);
 
 /* create listener for when user changes max volume */
 browser.storage.onChanged.addListener(settingsUpdateCallback);
