@@ -3,13 +3,13 @@ var ytmvf = {
     maxVolume: userInput.value
 };
 
-console.info('Beginning YSMVF popup script...');
+console.info(PL_NAME + 'Beginning YSMVF popup script...');
 
 /* read stored value from storage and set the input to that value */
 if (browser.storage.local.get(ytmvf, function (storage) {
     ytmvf.maxVolume = storage.maxVolume;
     userInput.value = ytmvf.maxVolume;
-    console.info(PL_NAME + 'Slider value changed to: ' + ytmvf.maxVolume + ' initially in popup.');
+    console.info(PL_NAME + 'Slider value initialized to: ' + ytmvf.maxVolume + ' in popup.');
 }));
 
 
