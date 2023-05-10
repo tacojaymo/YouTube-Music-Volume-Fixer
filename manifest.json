@@ -25,7 +25,7 @@
                 "*://music.youtube.com/*"
             ],
             "js": [
-                "storageAvailable.js",
+                "globals.js",
                 "yt-music-volume-fixer.js"
             ]
         }

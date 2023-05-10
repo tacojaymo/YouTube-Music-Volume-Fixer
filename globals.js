@@ -1,0 +1,1 @@
+let PLUGIN_NAME = '[YTMVF]: ';
