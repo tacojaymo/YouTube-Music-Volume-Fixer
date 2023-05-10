@@ -13,8 +13,8 @@
     ],
     "browser_action": {
         "default_icon": {
-            "32": "icons/ytmvf-32.png",
-            "16": "icons/ytmvf-16.png"
+            "16": "icons/ytmvf-16.png",
+            "32": "icons/ytmvf-32.png"
         },
         "default_title": "YouTube Music Volume Fixer",
         "default_popup": "popup/popup.html"
